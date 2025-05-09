@@ -1,4 +1,11 @@
-# nsls2-template
+# {endstation or TLA}-workflows
 
-This is a minimal template for new NSLS-II repositories.  It contains the approved BSD-3-Clause license together with additional text that should be included (LICENSE_README).  This text can appear at the bottom of the README.md if so desired. 
+> Replace all instances of {endstation or TLA} with the name of the endstation
+> or the **lower-case** three-letter acronym of the beamline, if an endstation name does not apply.
+> Finally, delete all instructions -- lines that start with `>`
+
+> Choose one of the following descriptions; delete the other.
+
+For beamlines with endstations: "Repository of workflows for the {endstation} endstation of the {TLA} beamline."
+For beamlines without endstations: "Repository of workflows for the {TLA} beamline."
 
