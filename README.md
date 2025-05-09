@@ -7,5 +7,6 @@
 > Choose one of the following descriptions; delete the other.
 
 For beamlines with endstations: "Repository of workflows for the {endstation} endstation of the {TLA} beamline."
+
 For beamlines without endstations: "Repository of workflows for the {TLA} beamline."
 
