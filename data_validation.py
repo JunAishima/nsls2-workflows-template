@@ -2,6 +2,7 @@ import os
 import time as ttime
 
 from prefect import flow, task
+from prefect.blocks.system import Secret
 from tiled.client import from_profile
 
 BEAMLINE_OR_ENDSTATION = "!!! Set the endstation or beamline_TLA here !!!"
@@ -9,7 +10,8 @@ BEAMLINE_OR_ENDSTATION = "!!! Set the endstation or beamline_TLA here !!!"
 
 @task(retries=2, retry_delay_seconds=10)
 def read_all_streams(uid, beamline_acronym=BEAMLINE_OR_ENDSTATION):
-    tiled_client = from_profile("nsls2")
+    api_key = Secret.load("tiled-tla-api-key", _sync=True).get()
+    tiled_client = from_profile("nsls2", api_key=api_key)
     run = tiled_client[beamline_acronym]["raw"][uid]
     print(f"Validating uid {run.metadata['start']['uid']}")
     start_time = ttime.monotonic()
