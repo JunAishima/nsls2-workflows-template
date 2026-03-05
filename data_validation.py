@@ -39,7 +39,7 @@ def data_validation(uid, beamline_acronym="tst", dry_run=False, api_key=None):
             for stream in run_client:
                 logger.info(f"{stream}:")
                 stream_start_time = ttime.monotonic()
-                stream_data = read_stream(run, stream)  # noqa: F841
+                stream_data = read_stream(run_client, stream)  # noqa: F841
                 stream_elapsed_time = ttime.monotonic() - stream_start_time
                 logger.info(f"{stream} elapsed_time = {stream_elapsed_time}")
                 logger.info(f"{stream} nbytes = {stream_data.nbytes:_}")
