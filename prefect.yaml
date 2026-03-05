@@ -24,14 +24,12 @@ deployments:
     schedule: {}
     work_pool:
       job_variables:
-        env:
-          TILED_SITE_PROFILES: /nsls2/software/etc/tiled/profiles
         image: ghcr.io/nsls2/nsls2-workflows-template:main
         image_pull_policy: Always
         network: slirp4netns
         volumes:
           - /nsls2/data/tla/proposals:/nsls2/data/tla/proposals
-          - /nsls2/software/etc/tiled:/nsls2/software/etc/tiled
+          - /srv/prefect3-docker-worker-tla/app:/srv
         container_create_kwargs:
           userns_mode: "keep-id:uid=402xxx,gid=402xxx" # workflow-tla:workflow-tla
         auto_remove: true
