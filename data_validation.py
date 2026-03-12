@@ -6,7 +6,6 @@ from bluesky_tiled_plugin.writing.validator import validate
 
 @task(retries=2, retry_delay_seconds=10)
 def get_run(uid, api_key=None):
-    logger = get_run_logger()
     cl = from_uri("https://tiled.nsls2.bnl.gov", api_key=api_key)
     run = cl["tla"]["raw"][uid]  # ***** replace tla with endstation/beamline tla
     return run
@@ -15,7 +14,6 @@ def get_run(uid, api_key=None):
 # SQL database-backed - remove if this does not exist on the beamline
 @task(retries=2, retry_delay_seconds=10)
 def get_run_migration(uid, api_key=None):
-    logger = get_run_logger()
     cl = from_uri("https://tiled.nsls2.bnl.gov", api_key=api_key)
     run = cl["tla"]["migration"][uid]  # ***** replace tla with endstation/beamline tla
     return run
