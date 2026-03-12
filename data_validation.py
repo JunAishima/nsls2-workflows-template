@@ -29,7 +29,9 @@ def read_stream(run, stream):
 @flow
 def data_validation(uid, api_key=None, dry_run=False):
     logger = get_run_logger()
-    run_client = get_run_migration(uid, api_key=api_key)  # replace with get_run() if no SQL database
+    run_client = get_run_migration(
+        uid, api_key=api_key
+    )  # replace with get_run() if no SQL database
     logger.info(f"Validating uid {run_client.start['uid']}")
     start_time = ttime.monotonic()
     try:
@@ -42,9 +44,7 @@ def data_validation(uid, api_key=None, dry_run=False):
             validate(run_client, fix_errors=True, try_reading=True, raise_on_error=True)
     except AttributeError:
         # check by reading data if not SQL database-backed
-        run_client = get_run(
-            uid, api_key=api_key
-        )  # remove if no SQL database
+        run_client = get_run(uid, api_key=api_key)  # remove if no SQL database
         for stream in run_client:
             logger.info(f"{stream}:")
             stream_start_time = ttime.monotonic()
