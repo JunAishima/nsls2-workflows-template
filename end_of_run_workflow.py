@@ -22,6 +22,6 @@ def end_of_run_workflow(stop_doc, dry_run=False):
     uid = stop_doc["run_start"]
     if not api_key:
         api_key = get_api_key_from_env(api_key=None)
-    data_validation(uid, dry_run=dry_run, api_key=api_key)
+    data_validation(uid, api_key=api_key, dry_run=dry_run)
     log_completion(dry_run=dry_run)
     return True
