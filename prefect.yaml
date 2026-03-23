@@ -29,7 +29,7 @@ deployments:
         network: slirp4netns
         volumes:
           - /nsls2/data/tla/proposals:/nsls2/data/tla/proposals
-          - /srv/prefect3-docker-worker-tla/app:/srv
+          - /srv/prefect3-docker-worker-tla/app:/srv # replace tla here
         container_create_kwargs:
           userns_mode: "keep-id:uid=402xxx,gid=402xxx" # workflow-tla:workflow-tla
         auto_remove: true
