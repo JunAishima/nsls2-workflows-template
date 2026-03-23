@@ -36,6 +36,6 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         env:
-          TILED_API_KEY: ${{ secrets.TILED_API_KEY }}
+          TILED_API_KEY: ${{ secrets.TEST_TILED_API_KEY }}
         run: |
           pytest
