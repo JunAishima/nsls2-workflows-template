@@ -21,7 +21,7 @@ def get_run_migration(uid, api_key=None):
     cl = from_uri("https://tiled.nsls2.bnl.gov", api_key=api_key)
     run = cl[f"{BEAMLINE_OR_ENDSTATION}/migration"][
         uid
-    ]  # ***** replace tla with endstation/beamline tla
+    ]
     return run
 
 
