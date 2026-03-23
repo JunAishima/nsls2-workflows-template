@@ -1,7 +1,7 @@
 from prefect import task, flow, get_run_logger
 import time as ttime
 from tiled.client import from_uri
-from bluesky_tiled_plugin.writing.validator import validate
+from bluesky_tiled_plugins.writing.validator import validate
 
 BEAMLINE_OR_ENDSTATION = "!!! Set the endstation or beamline_TLA here !!!"
 
