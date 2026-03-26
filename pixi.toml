@@ -9,9 +9,3 @@ python = "<3.14"
 tiled = ">=0.2.8"
 prefect-docker = "*"
 bluesky-tiled-plugins = ">=2.0.2"
-
-[feature.test.dependencies]
-pytest = "*"
-
-[environments]
-test = ["test"]
