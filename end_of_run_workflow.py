@@ -5,6 +5,7 @@ from prefect.blocks.notifications import SlackWebhook
 from prefect.context import FlowRunContext
 from prefect.settings import PREFECT_UI_URL
 from data_validation import get_run, data_validation
+from dotenv import load_dotenv
 
 CATALOG_NAME = "tla"
 
@@ -76,6 +77,7 @@ def log_completion(dry_run=False):
 
 @flow
 def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
+    load_dotenv()
     uid = stop_doc["run_start"]
     data_validation(uid, api_key=api_key, dry_run=dry_run)
     log_completion(dry_run=dry_run)
