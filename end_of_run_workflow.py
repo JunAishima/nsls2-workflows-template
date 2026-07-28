@@ -4,7 +4,7 @@ from prefect import task, flow, get_run_logger
 from prefect.blocks.notifications import SlackWebhook
 from prefect.context import FlowRunContext
 from prefect.settings import PREFECT_UI_URL
-from data_validation import get_run, data_validation
+from data_validation import get_run_migration
 from dotenv import load_dotenv
 
 CATALOG_NAME = "tla"
@@ -79,6 +79,8 @@ def log_completion(dry_run=False):
 def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
     load_dotenv()
     uid = stop_doc["run_start"]
-    data_validation(uid, api_key=api_key, dry_run=dry_run)
+    # data_validation(uid, api_key=api_key, dry_run=dry_run) # Use this line if the Mongo database-backed run
+    run = get_run_migration(api_key=api_key) # Use this line if SQL database-backed run
+    run.validate(raise_on_error=True) # Only for SQL database-backed run
     log_completion(dry_run=dry_run)
     return True
