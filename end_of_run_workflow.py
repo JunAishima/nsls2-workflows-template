@@ -80,7 +80,9 @@ def end_of_run_workflow(stop_doc, api_key=None, dry_run=False):
     load_dotenv()
     uid = stop_doc["run_start"]
     # data_validation(uid, api_key=api_key, dry_run=dry_run) # Use this line if the Mongo database-backed run
-    run = get_run_migration(uid, api_key=api_key)  # Use this line if SQL database-backed run
+    run = get_run_migration(
+        uid, api_key=api_key
+    )  # Use this line if SQL database-backed run
     run.validate(raise_on_error=True)  # Only for SQL database-backed run
     log_completion(dry_run=dry_run)
     return True
