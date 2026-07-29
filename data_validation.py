@@ -14,6 +14,7 @@ def get_api_key_from_env():
     return api_key
 
 
+# Mongo database-backed - remove if this does not exist on the beamline
 @task(retries=2, retry_delay_seconds=10)
 def get_run(uid, api_key=None):
     if not api_key:
