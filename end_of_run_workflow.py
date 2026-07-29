@@ -4,7 +4,7 @@ from prefect import task, flow, get_run_logger
 from prefect.blocks.notifications import SlackWebhook
 from prefect.context import FlowRunContext
 from prefect.settings import PREFECT_UI_URL
-from data_validation import get_run, get_run_migration
+from data_validation import get_run_migration
 from dotenv import load_dotenv
 
 CATALOG_NAME = "tla"
