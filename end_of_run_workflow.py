@@ -4,7 +4,7 @@ from prefect import task, flow, get_run_logger
 from prefect.blocks.notifications import SlackWebhook
 from prefect.context import FlowRunContext
 from prefect.settings import PREFECT_UI_URL
-from data_validation import get_run, get_run_migration
+from data_validation import get_run_migration
 from dotenv import load_dotenv
 
 CATALOG_NAME = "tla"
@@ -34,7 +34,8 @@ def slack(func):
         uid = stop_doc["run_start"]
 
         # Get the scan_id.
-        run = get_run(uid, api_key=api_key)
+        # run = get_run(uid, api_key=api_key)  # use this if Mongo
+        run = get_run_migration(uid, api_key=api_key)
         scan_id = run.start["scan_id"]
 
         # Send a message to mon-bluesky if bluesky-run failed.
