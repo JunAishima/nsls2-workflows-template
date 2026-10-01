@@ -7,13 +7,13 @@ from prefect.settings import PREFECT_UI_URL
 from data_validation import get_run_migration
 from dotenv import load_dotenv
 
-CATALOG_NAME = "tla"
+CATALOG_NAME = "TLA"
 
 
 def slack(func):
     """
     Send a message to mon-prefect and mon-prefect-program slack channels if the flow-run failed.
-    Send a message to mon-prefect-tla slack channel with the flow-run status.
+    Send a message to mon-prefect-TLA slack channel with the flow-run status.
     Send a message to mon-bluesky slack channel if the bluesky-run failed.
 
     NOTE: the name of this inner function is the same as the real end_of_workflow() function because
@@ -27,7 +27,7 @@ def slack(func):
         # Load slack credentials that are saved in Prefect.
         mon_prefect = SlackWebhook.load("mon-prefect")
         mon_bluesky = SlackWebhook.load("mon-bluesky")
-        mon_prefect_instrument = SlackWebhook.load("mon-prefect-tla")
+        mon_prefect_instrument = SlackWebhook.load("mon-prefect-TLA")
         mon_prefect_program = SlackWebhook.load("mon-prefect-program")
 
         # Get the uid.
@@ -47,14 +47,14 @@ def slack(func):
         try:
             result = func(stop_doc, api_key=api_key, dry_run=dry_run)
 
-            # Send a message to mon-prefect-tla if flow-run is successful.
+            # Send a message to mon-prefect-TLA if flow-run is successful.
             message = f":white_check_mark: {CATALOG_NAME} flow-run successful. (*{flow_run_name}*)\n ```run_start: {uid}\nscan_id: {scan_id}```"
             mon_prefect_instrument.notify(message)
             return result
         except Exception as e:
             tb = traceback.format_exception_only(e)
 
-            # Send a message to mon-prefect-tla, mon-prefect if flow-run failed.
+            # Send a message to mon-prefect-TLA, mon-prefect if flow-run failed.
             message = f":bangbang: {CATALOG_NAME} flow-run failed. (*{flow_run_name}*)\n ```run_start: {uid}\nscan_id: {scan_id}``` ```{tb[-1]}```"
             mon_prefect.notify(message)
             mon_prefect_instrument.notify(message)
