@@ -1,4 +1,4 @@
-name: prefect-docker-pixi-tiled-tla
+name: prefect-docker-pixi-tiled-TLA
 prefect-version: 3.6.10
 
 build: null
@@ -9,14 +9,14 @@ pull:
   - prefect.deployments.steps.set_working_directory:
       directory: /repo
   - prefect.deployments.steps.git_clone:
-      repository: https://github.com/nsls2/tla-workflows.git
+      repository: https://github.com/nsls2/TLA-workflows.git
       branch: main
 
 deployments:
-  - name: tla-end-of-run-workflow-docker
+  - name: TLA-end-of-run-workflow-docker
     version: 0.1.2
     tags:
-      - tla
+      - TLA
       - main
     description: Deploy the updated Docker image
     entrypoint: end_of_run_workflow.py:end_of_run_workflow
@@ -24,13 +24,13 @@ deployments:
     schedule: {}
     work_pool:
       job_variables:
-        image: ghcr.io/nsls2/tla-workflows:main
+        image: ghcr.io/nsls2/TLA-workflows:main
         image_pull_policy: Always
         network: slirp4netns
         volumes:
-          - /nsls2/data/tla/proposals:/nsls2/data/tla/proposals
-          - /srv/prefect3-docker-worker-tla/app:/srv # replace tla here
+          - /nsls2/data/TLA/proposals:/nsls2/data/TLA/proposals
+          - /srv/prefect3-docker-worker-TLA/app:/srv # replace TLA here
         container_create_kwargs:
-          userns_mode: "keep-id:uid=402xxx,gid=402xxx" # workflow-tla:workflow-tla
+          userns_mode: "keep-id:uid=402xxx,gid=402xxx" # workflow-TLA:workflow-TLA
         auto_remove: true
-      name: tla-work-pool-docker
+      name: TLA-work-pool-docker
