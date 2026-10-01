@@ -1,4 +1,4 @@
-# {endstation or TLA}-workflows
+# {TLA}-workflows
 
 > Replace all instances of {endstation or TLA} with the name of the endstation
 > or the **lower-case** three-letter acronym of the beamline, if an endstation
