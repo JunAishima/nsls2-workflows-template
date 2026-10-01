@@ -5,6 +5,9 @@
 > name does not apply. Finally, delete all instructions -- lines that start with
 > `>`
 
+> It would be quick and easy to perform a text replace call for "TLA" to "tla" where
+"tla" is the acronym for the instrument name.
+
 > Choose one of the following descriptions; delete the other.
 
 For beamlines with endstations: "Repository of workflows for the {endstation}
